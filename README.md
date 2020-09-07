@@ -25,7 +25,7 @@ config.urlPrefix = config.protocol + '://' + config.hostname + ':' + config.port
 
 2. copy **`./src/config.js`** code and paste to the xiaohsujiang editor
 ![step1](./README/01.png)
-
+	
 3. copy **`./dist/webdav-uploader.js`** code and paste to the xiaohsujiang editor
 ![step1](./README/02.png)
 
@@ -155,7 +155,7 @@ const server = new webdav.WebDAVServer({
 
 //solve cross domain problem
 server.beforeRequest((ctx, next) => {
-    if (ctx.request.method **`= 'OPTIONS') {
+    if (ctx.request.method === 'OPTIONS') {
       ctx.response.setHeader('DAV', '1,2');
       ctx.response.setHeader('Access-Control-Allow-Origin', '*');
       ctx.response.setHeader('Access-Control-Allow-Credentials', 'true');
