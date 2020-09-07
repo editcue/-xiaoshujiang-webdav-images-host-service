@@ -207,7 +207,7 @@ Dependency of data tranfer libary [jsdavclient](https://github.com/svogler/jsdav
 ##### FAQ
 ----------
 ###### Cross domain issus
-To avoid cross domain access scurity problem.You need to set a series of property to your server side response header. For example using [webdav-server](https://github.com/OpenMarshal/npm-WebDAV-Server):
+To avoid cross domain access security problem.You need to set a series of property to your server side response header. For example using [webdav-server](https://github.com/OpenMarshal/npm-WebDAV-Server):
 ```javascript
 server.beforeRequest((ctx, next) => {
     if (ctx.request.method === 'OPTIONS') {
