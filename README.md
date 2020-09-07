@@ -6,7 +6,7 @@ This is a [custom images host service plugin](http://soft.xiaoshujiang.com/blog/
 
 ##### How to use
 ----------
-1. setup your configure ==./src/config.js #607D8B==
+1. setup your configure **`./src/config.js`**
 ```javascript
 var config = {
 	hostname: 'localhost',
@@ -23,10 +23,10 @@ config.urlPrefix = config.protocol + '://' + config.hostname + ':' + config.port
 //The access url would be like 'http://localhosst:1900/articles/images/xxx.png'
 ```
 
-2. copy ==./src/config.js #607D8B== code and paste to the xiaohsujiang editor
+2. copy **`./src/config.js`** code and paste to the xiaohsujiang editor
 ![step1](./README/01.png)
 
-3. copy ==./dist/webdav-uploader.js #607D8B== code and paste to the xiaohsujiang editor
+3. copy **`./dist/webdav-uploader.js`** code and paste to the xiaohsujiang editor
 ![step1](./README/02.png)
 
 ##### Example
@@ -108,8 +108,8 @@ config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port
 ```
 
 ###### server side (optional)
-==(server side highly recomand use [webdav-server](https://github.com/OpenMarshal/npm-WebDAV-Server)) #673AB7==
- 1. create ==package.json #607D8B==
+<font color=orange>If you want to use your own webdav server. I highly recomand use[**`webdav-server`**](https://github.com/OpenMarshal/npm-WebDAV-Server).  And here is my example code.</font>
+ 1. create **`package.json`**
  ```json
  {
   "name": "my-webdav-server",
@@ -129,7 +129,7 @@ config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port
  npm install 
  ```
  
-3.  create ==index.js #607D8B==
+3.  create **`index.js`**
 ``` javascript
 // init webdav-server
 const webdav = require('webdav-server').v2;
@@ -155,7 +155,7 @@ const server = new webdav.WebDAVServer({
 
 //solve cross domain problem
 server.beforeRequest((ctx, next) => {
-    if (ctx.request.method === 'OPTIONS') {
+    if (ctx.request.method **`= 'OPTIONS') {
       ctx.response.setHeader('DAV', '1,2');
       ctx.response.setHeader('Access-Control-Allow-Origin', '*');
       ctx.response.setHeader('Access-Control-Allow-Credentials', 'true');
@@ -199,7 +199,7 @@ yarn serve
 
 ##### Reference and dependencies
 ----------
-Dependency of data tranfer libary [jsdavclient](https://github.com/svogler/jsdavclient). And rewrite as UMD mode names  ==./src/jsdavclient.umd.js #607D8B==.
+Dependency of data tranfer libary [jsdavclient](https://github.com/svogler/jsdavclient). And rewrite as UMD mode names **`./src/jsdavclient.umd.js`**.
 
 [WebDAV officle specifications](http://www.webdav.org/)
 
