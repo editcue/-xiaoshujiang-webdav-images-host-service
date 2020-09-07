@@ -1,0 +1,23 @@
+{
+  "name": "xiaoshujiang-webdav-images-host-service",
+  "version": "1.0.0",
+  "description": "A xiaoshujiang custom images host service using webdav server",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [
+    "xiaoshujiang",
+    "webdav",
+    "images",
+    "host",
+    "service",
+    "server"
+  ],
+  "author": "editcue",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
+}
