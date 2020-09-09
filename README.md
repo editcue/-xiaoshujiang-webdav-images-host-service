@@ -1,12 +1,12 @@
-#### xiaoshujiang-webdav-images-host-service
+# xiaoshujiang-webdav-images-host-service
 
-##### Introduction
+#### Introduction
 ----------
 This is a [custom images host service plugin](http://soft.xiaoshujiang.com/blog/images/custom_images_manager#e7a4bae4be8b_6) of [xiaoshujiang](http://soft.xiaoshujiang.com) markdown editor. It can upload image to any webdav server .
 
-##### How to use
+#### How to use
 ----------
-1. setup your configure **`./src/config.js`**
+1. setup your configure [**`./src/config.js`**](./src/config.js)
 ```javascript
 var config = {
 	hostname: 'localhost',
@@ -29,9 +29,9 @@ config.urlPrefix = config.protocol + '://' + config.hostname + ':' + config.port
 3. copy **`./dist/webdav-uploader.js`** code and paste to the xiaohsujiang editor
 ![step1](./README/02.png)
 
-##### Example
+#### Example
 ----------
-###### client side
+##### client side
 - webdav servere configure with https 1900 port
 ```javascript
 var config = {
@@ -107,9 +107,9 @@ config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port
 //The access url would be like 'http://localhosst/articles/images/xxx.png'
 ```
 
-###### server side (optional)
+##### server side (optional)
 <font color=orange>If you want to use your own webdav server. I highly recomand use[**`webdav-server`**](https://github.com/OpenMarshal/npm-WebDAV-Server).  And here is my example code.</font>
- 1. create **`package.json`**
+1. create [**`package.json`**](./webdav-server/package.json)
  ```json
  {
   "name": "my-webdav-server",
@@ -125,12 +125,12 @@ config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port
 }
  ```
 2. install dependenies
- ```bash
+ ```shell script
  npm install 
  ```
  
-3.  create **`index.js`**
-``` javascript
+3. create [**`index.js`**](./webdav-server/index.js)
+```javascript
 // init webdav-server
 const webdav = require('webdav-server').v2;
 
@@ -188,25 +188,25 @@ server.setFileSystem('/articles', new webdav.PhysicalFileSystem('/root/articles'
 
 4. run webdav-server
  - using npm
-```bash
+```shell script
 npm run serve
 ```
  - using yarn
-```bash
+```shell script
 yarn serve
 ```
 
 
-##### Reference and dependencies
+#### Reference and dependencies
 ----------
 Dependency of data tranfer libary [jsdavclient](https://github.com/svogler/jsdavclient). And rewrite as UMD mode names **`./src/jsdavclient.umd.js`**.
 
 [WebDAV officle specifications](http://www.webdav.org/)
 
 
-##### FAQ
+#### FAQ
 ----------
-###### Cross domain issus
+##### Cross domain issus
 To avoid cross domain access security problem.You need to set a series of property to your server side response header. For example using [webdav-server](https://github.com/OpenMarshal/npm-WebDAV-Server):
 ```javascript
 server.beforeRequest((ctx, next) => {
