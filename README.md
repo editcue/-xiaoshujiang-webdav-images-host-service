@@ -199,7 +199,7 @@ yarn serve
 
 ### Reference and dependencies
 ----------
-Dependency of data tranfer libary [jsdavclient](https://github.com/svogler/jsdavclient). And rewrite as UMD mode names **`./src/jsdavclient.umd.js`**.
+Dependency of data transfer libary [jsdavclient](https://github.com/svogler/jsdavclient). And rewrite as UMD mode names [**`./src/jsdavclient.umd.js`**](./src/davclient.umd.js).
 
 [WebDAV officle specifications](http://www.webdav.org/)
 
