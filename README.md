@@ -15,10 +15,10 @@ var config = {
 	username: 'username',
 	password: 'password',
 	filePath: '/articles/images/',
-	urlPrefix: '',
+	accessUrl: '',
 };
 //Mixing access url path
-config.urlPrefix = config.protocol + '://' + config.hostname + ':' + config.port + config.filePath;
+config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port + config.filePath;
 //The upload url would be like 'http://localhosst:1900/articles/images/xxx.png'
 //The access url would be like 'http://localhosst:1900/articles/images/xxx.png'
 ```
