@@ -165,7 +165,7 @@ server.beforeRequest((ctx, next) => {
       );
       ctx.response.setHeader(
         'Access-Control-Allow-Methods',
-        'PROPPATCH,PROPFIND,OPTIONS,DELETE,UNLOCK,COPY,LOCK,MOVE,HEAD,POST,PUT,GET',
+        'PROPPATCH,PROPFIND,OPTIONS,DELETE,UNLOCK,COPY,LOCK,MOVE,HEAD,POST,PUT,GET,MKCOL',
       );
       ctx.response.setHeader(
         'Access-Control-Expose-Headers',
@@ -220,7 +220,7 @@ server.beforeRequest((ctx, next) => {
       );
       ctx.response.setHeader(
         'Access-Control-Allow-Methods',
-        'PROPPATCH,PROPFIND,OPTIONS,DELETE,UNLOCK,COPY,LOCK,MOVE,HEAD,POST,PUT,GET',
+        'PROPPATCH,PROPFIND,OPTIONS,DELETE,UNLOCK,COPY,LOCK,MOVE,HEAD,POST,PUT,GET,MKCOL',
       );
       ctx.response.setHeader(
         'Access-Control-Expose-Headers',
