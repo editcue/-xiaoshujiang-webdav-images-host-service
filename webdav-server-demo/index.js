@@ -1,8 +1,12 @@
 // JavaScript
+const path = require('path');
+//Configure your PhysicalFileSystem Path. eg: windows c:\article or linux /usr/article
+const pathAbsolute = path.resolve('./articles');
 const webdav = require('webdav-server').v2;
 
 // User manager (tells who are the users)
 const userManager = new webdav.SimpleUserManager();
+//Configure your username and password and isAdmin
 const user = userManager.addUser('username', 'password', false);
 
 // Privilege manager (tells which users can access which files/folders)
@@ -44,6 +48,6 @@ server.beforeRequest((ctx, next) => {
   }
 });
 
-server.setFileSystem('/articles', new webdav.PhysicalFileSystem('/root/articles'), (success) => {
+server.setFileSystem('/articles', new webdav.PhysicalFileSystem(pathAbsolute), (success) => {
   server.start(() => console.log('READY'));
 })

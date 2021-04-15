@@ -19,8 +19,8 @@ var config = {
 };
 //Mixing access url path
 config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port + config.filePath;
-//The upload url would be like 'http://localhosst:1900/articles/images/xxx.png'
-//The access url would be like 'http://localhosst:1900/articles/images/xxx.png'
+//The upload url would be like 'http://localhost:1900/articles/images/xxx.png'
+//The access url would be like 'http://localhost:1900/articles/images/xxx.png'
 ```
 
 2. copy your [**`./src/config.js`**](./src/config.js) code and paste to the xiaohsujiang editor
@@ -32,7 +32,7 @@ config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port
 ### Example
 ----------
 #### client side
-- webdav servere configure with https 1900 port
+- webdav server configure with https 1900 port access without 1900 port
 ```javascript
 var config = {
 	hostname: 'localhost',
@@ -41,12 +41,12 @@ var config = {
 	username: 'username',
 	password: 'password',
 	uploadPath: '/articles/images/',//This is the path that upload file to webdav server
-	accessUrl: 'https://localhosst/articles/images/',//This is the url prefix that access webdav server uploaded file
+	accessUrl: 'https://localhost/articles/images/',//This is the url prefix that access webdav server uploaded file
 };
-//The upload url would be like 'https://localhosst:1900/articles/images/xxx.png'
-//The access url would be like 'https://localhosst/articles/images/xxx.png'
+//The upload url would be like 'https://localhost:1900/articles/images/xxx.png'
+//The access url would be like 'https://localhost/articles/images/xxx.png'
 ```
-- webdav servere configure with https 443 port
+- webdav server configure with https 443 port
 ```javascript
 var config = {
 	hostname: 'localhost',
@@ -55,45 +55,17 @@ var config = {
 	username: 'username',
 	password: 'password',
 	uploadPath: '/articles/images/',//This is the path that upload file to webdav server
-	accessUrl: 'https://localhosst/articles/images/',//This is the url prefix that access webdav server uploaded file
+	accessUrl: 'https://localhost/articles/images/',//This is the url prefix that access webdav server uploaded file
 };
-//The upload url would be like 'https://localhosst/articles/images/xxx.png'
-//The access url would be like 'https://localhosst/articles/images/xxx.png'
+//The upload url would be like 'https://localhost/articles/images/xxx.png'
+//The access url would be like 'https://localhost/articles/images/xxx.png'
 ```
-- webdav servere configure with http 1900 port
+- webdav server configure with https 443 port using same upload and access url 
 ```javascript
 var config = {
 	hostname: 'localhost',
-	port: 1900,
-	protocol: 'http',
-	username: 'username',
-	password: 'password',
-	uploadPath: '/articles/images/',//This is the path that upload file to webdav server
-	accessUrl: 'http://localhosst/articles/images/',//This is the url prefix that access webdav server uploaded file
-};
-//The upload url would be like 'http://localhosst:1900/articles/images/xxx.png'
-//The access url would be like 'http://localhosst/articles/images/xxx.png'
-```
-- webdav servere configure with http 1900 port
-```javascript
-var config = {
-	hostname: 'localhost',
-	port: 80,
-	protocol: 'http',
-	username: 'username',
-	password: 'password',
-	uploadPath: '/articles/images/',//This is the path that upload file to webdav server
-	accessUrl: 'http://localhosst/articles/images/',//This is the url prefix that access webdav server uploaded file
-};
-//The upload url would be like 'http://localhosst/articles/images/xxx.png'
-//The access url would be like 'http://localhosst/articles/images/xxx.png'
-```
-- webdav servere configure with http 443 port using same upload and access url 
-```javascript
-var config = {
-	hostname: 'localhost',
-	port: 80,
-	protocol: 'http',
+	port: 443,
+	protocol: 'https',
 	username: 'username',
 	password: 'password',
 	uploadPath: '/articles/images/',//This is the path that upload file to webdav server
@@ -103,13 +75,13 @@ var config = {
 //If your upload path and access path is same, use this code to mixing url path
 config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port + config.uploadPath;
 
-//The upload url would be like 'http://localhosst/articles/images/xxx.png'
-//The access url would be like 'http://localhosst/articles/images/xxx.png'
+//The upload url would be like 'http://localhost/articles/images/xxx.png'
+//The access url would be like 'http://localhost:443/articles/images/xxx.png'
 ```
 
 #### server side (optional)
-<font color=orange>If you want to use your own webdav server. I highly recomand use[**`webdav-server`**](https://github.com/OpenMarshal/npm-WebDAV-Server).  And here is my example code.</font>
-1. create [**`package.json`**](./webdav-server/package.json)
+<font color=orange>If you want to use your own webdav server. I highly recomand use[**`webdav-server`**](https://github.com/OpenMarshal/npm-WebDAV-Server).  And here is my [**`example code`**](./webdav-server-demo).</font>
+1. create [**`package.json`**](./webdav-server-demo/package.json)
  ```json
  {
   "name": "my-webdav-server",
@@ -129,9 +101,11 @@ config.accessUrl = config.protocol + '://' + config.hostname + ':' + config.port
  npm install 
  ```
  
-3. create [**`index.js`**](./webdav-server/index.js)
+3. create [**`index.js`**](./webdav-server-demo/index.js)
 ```javascript
 // init webdav-server
+const path = require('path');
+const pathAbsolute = path.resolve('./articles');
 const webdav = require('webdav-server').v2;
 
 // User manager (tells who are the users)
@@ -181,7 +155,7 @@ server.beforeRequest((ctx, next) => {
 
 //'/articles' is the server url path , '/root/articles' is your system folder path .
 //For example: url 'http://localhot:1900/articles' map to system folder '/root/articles'
-server.setFileSystem('/articles', new webdav.PhysicalFileSystem('/root/articles'), (success) => {
+server.setFileSystem('/articles', new webdav.PhysicalFileSystem(pathAbsolute), (success) => {
     server.start(() => console.log('READY'));
 })
 ```
